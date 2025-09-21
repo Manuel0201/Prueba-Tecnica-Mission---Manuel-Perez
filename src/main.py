@@ -6,17 +6,18 @@ import plotly.express as px
 # Título del dashboard
 st.title("Prueba Técnica – Demo RPA con API Pública")
 
-# Consumir una API pública de ejemplo (OpenWeather no requiere cuenta para ciudades fijas)
-url = "https://api.coindesk.com/v1/bpi/currentprice.json"
+# API pública: datos curiosos de gatos
+url = "https://catfact.ninja/fact"
 response = requests.get(url)
 
 if response.status_code == 200:
     data = response.json()
-    bitcoin_price = data["bpi"]["USD"]["rate_float"]
+    fact = data["fact"]
 
-    st.metric("Precio Bitcoin (USD)", f"${bitcoin_price:,.2f}")
+    st.subheader("Dato curioso 🐱")
+    st.write(fact)
 
-    # Ejemplo con datos ficticios
+    # Datos de ejemplo para la gráfica
     df = pd.DataFrame({
         "Día": ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes"],
         "Transacciones": [120, 90, 150, 80, 200]
@@ -26,4 +27,5 @@ if response.status_code == 200:
     st.plotly_chart(fig, use_container_width=True)
 else:
     st.error("No se pudo obtener datos de la API")
+
 
