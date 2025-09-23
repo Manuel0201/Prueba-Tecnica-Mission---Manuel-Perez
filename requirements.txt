@@ -1,5 +1,5 @@
-streamlit
-plotly
-pandas
 requests
-pytest
+pandas
+plotly
+streamlit
+python-dateutil
